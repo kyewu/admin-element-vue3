@@ -11,6 +11,7 @@ import VueRouter from 'unplugin-vue-router/vite'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
@@ -36,6 +37,7 @@ export default defineConfig({
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
+      resolvers: [ElementPlusResolver()],
     }),
     AutoImport({
       include: [
@@ -57,6 +59,7 @@ export default defineConfig({
       dts: 'src/auto-imports.d.ts',
       dirs: ['src/composables', 'src/stores'], // Auto import for module exports under directories
       vueTemplate: true, // Auto import inside Vue template
+      resolvers: [ElementPlusResolver()],
     }),
     vueJsx(),
     VueDevTools(),

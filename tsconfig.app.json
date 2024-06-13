@@ -11,7 +11,8 @@
     "types": [
       "vite-plugin-vue-layouts/client",
       "unplugin-vue-router/client",
-      "vite-plugin-pages/client"
+      "vite-plugin-pages/client",
+      "element-plus/global"
     ]
   },
   "include": [
