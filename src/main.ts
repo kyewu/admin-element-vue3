@@ -4,9 +4,9 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import '@unocss/reset/tailwind.css'
-import '@/assets/style.scss'
 import 'virtual:uno.css'
-import 'element-plus/dist/index.css'
+import '@/assets/style.scss'
+import 'virtual:svg-icons-register'
 
 const app = createApp(App)
 

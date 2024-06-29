@@ -1,4 +1,6 @@
 import { URL, fileURLToPath } from 'node:url'
+import path from 'node:path'
+import process from 'node:process'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -12,6 +14,7 @@ import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
@@ -64,6 +67,10 @@ export default defineConfig({
     vueJsx(),
     VueDevTools(),
     UnoCSS(),
+    createSvgIconsPlugin({
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/icons/svg')],
+      symbolId: 'icon-[dir]-[name]',
+    }),
   ],
   resolve: {
     alias: {
