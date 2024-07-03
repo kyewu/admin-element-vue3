@@ -16,6 +16,8 @@ onMounted(() => {
 </script>
 
 <template>
+  <IconList />
+  <WebIcon name="xiaoxi-zhihui" />
   <SvgIcon name="xing" class="text-4 text-red" />
   <img :src="star" class="text-3xl w-5 h-5 text-red">
   <el-button>default</el-button>
