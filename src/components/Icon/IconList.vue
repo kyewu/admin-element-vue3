@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { Icon, loadIcons } from '@iconify/vue'
-import iconDefaultData from '@/components/icon-ep.json'
-import type { IconListType } from '@/components/types'
+import type { IconListType } from './types'
+import iconDefaultData from './icon-ep.json'
 
 const props = withDefaults(defineProps<IconListType>(), {
   collection: 'ep',
   iconData: () => iconDefaultData,
   showTextFlag: false,
+  searchValue: '',
 })
 const emits = defineEmits(['click'])
+const data = computed(() => (props.searchValue === '' ? props.iconData : props.iconData.filter((item: string) => item.includes(props.searchValue))))
 onBeforeMount(async () => {
   await loadIcons(props.iconData.map((o: string) => `${props.collection}:${o}`))
 })
@@ -23,9 +25,9 @@ function fisrtLetterToUpperCase(str: string): string {
 </script>
 
 <template>
-  <ul class="grid sm-grid-cols-7 grid-cols-4 b-t-1">
+  <ul class="grid grid-cols-[repeat(auto-fill,minmax(17.5rem,1fr))] b-t-1">
     <li
-      v-for="(item, index) in iconData"
+      v-for="(item, index) in data"
       :key="index"
       class="h-22.5 flex flex-col flex-wrap items-center b-b-1 b-x-1 items-center justify-center cursor-pointer hover:bg-[#f2f6fc]"
       @click="handleClick(item)"

@@ -1,0 +1,14 @@
+// styles/element/index.scss
+/*just override what you need*/
+@forward 'element-plus/theme-chalk/src/dark/var.scss' with (
+  $bg-color: (
+    'page': #0a0a0a,
+    '': #626aef,
+    'overlay': #1d1e1f,
+  )
+);
+
+html{
+  background: var(--el-bg-color);
+  transition: all 0.3s ease-in-out;
+}

@@ -30,7 +30,7 @@ async function onClick(item: string) {
       <el-switch v-model="copySvgFlag" size="large" inactive-text="Copy icon code" active-text="Copy SVG content" />
       <el-input v-model="searchValue" class="w-full mb-5" placeholder="Search icon" />
     </div>
-    <IconList :show-text-flag="showTextFlag" @click="onClick" />
+    <IconList :show-text-flag="showTextFlag" :search-value="searchValue" @click="onClick" />
   </div>
 </template>
 

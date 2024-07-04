@@ -40,6 +40,7 @@ export default defineConfig({
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
+      directoryAsNamespace: false,
       resolvers: [ElementPlusResolver()],
     }),
     AutoImport({

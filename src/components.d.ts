@@ -7,14 +7,16 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    DarkModeToggle: typeof import('./components/Themes/DarkModeToggle.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
-    IconList: typeof import('./components/IconList.vue')['default']
+    FullScreen: typeof import('./components/Themes/FullScreen.vue')['default']
+    IconList: typeof import('./components/Icon/IconList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SvgIcon: typeof import('./components/SvgIcon.vue')['default']
-    WebIcon: typeof import('./components/WebIcon.vue')['default']
+    SvgIcon: typeof import('./components/Icon/SvgIcon.vue')['default']
+    WebIcon: typeof import('./components/Icon/WebIcon.vue')['default']
   }
 }

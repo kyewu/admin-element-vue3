@@ -15,4 +15,5 @@ export interface IconListType {
   collection?: string
   iconData?: string[]
   showTextFlag?: boolean
+  searchValue?: string
 }
