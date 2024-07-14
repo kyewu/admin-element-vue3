@@ -1,6 +1,7 @@
 import { URL, fileURLToPath } from 'node:url'
 import path from 'node:path'
 import process from 'node:process'
+import fs from 'node:fs'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -15,8 +16,37 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+
+/**
+ * A function that checks if the given ID includes 'element-plus/dist/locale' and filters locales based on the basename.
+ *
+ * @param {string} id - The ID to check for 'element-plus/dist/locale'
+ * @return {boolean} Whether to include or exclude locales based on the basename, when false, include it
+/**
+ * A function that checks if the given ID includes 'element-plus/dist/locale' and filters locales based on the basename.
+ *
+ * @param {string} id - The ID to check for 'element-plus/dist/locale'
+ * @returns {boolean} Whether to include or exclude locales based on the basename, when false, include it
+ */
+function externalElementPlusLocales(id: string): boolean {
+  const localesDir: string = path.resolve(__dirname, 'locales')
+  const localesFiles: string[] = fs.readdirSync(localesDir)
+    ?.map((file: string): string => file.match(/([\w-]*)\.json$/)?.[1] ?? '') ?? []
+  if (id.includes('element-plus/dist/locale')) {
+    const basename: string = path.basename(id, '.mjs')
+    // include locales files and exclude others
+    return !localesFiles.some((o: string) => o.toLowerCase() === basename)
+  }
+  return false
+}
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      external: id => externalElementPlusLocales(id),
+    },
+  },
   server: {
     port: 4210,
   },
@@ -71,6 +101,10 @@ export default defineConfig({
     createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons/svg')],
       symbolId: 'icon-[dir]-[name]',
+    }),
+    VueI18nPlugin({
+      include: path.resolve(__dirname, './locales/**'),
+      compositionOnly: true, // the legacy in modules/i18n is false, so forbid to change default language
     }),
   ],
   resolve: {
