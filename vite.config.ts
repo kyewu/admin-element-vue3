@@ -15,6 +15,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
@@ -71,6 +72,10 @@ export default defineConfig({
     createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons/svg')],
       symbolId: 'icon-[dir]-[name]',
+    }),
+    VueI18nPlugin({
+      include: path.resolve(__dirname, './locales/**'),
+      compositionOnly: true, // the legacy in modules/i18n is false, so forbid to change default language
     }),
   ],
   resolve: {
