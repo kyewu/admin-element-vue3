@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { loadLocaleMessages } from '@/modules/i18n'
 
-const locale = ref('en')
+const locale = ref('zh-CN')
 
 watch(locale, () => {
   loadLocaleMessages(locale.value)
@@ -20,7 +20,7 @@ watch(locale, () => {
       </option>
     </select>
   </div>
-  {{ $t('Hello') }}
+  {{ $t('Hello') }} -- {{ $t('el.breadcrumb.label') }}
   <FullScreen tag="i" icon-class="text-xl" />
   <DarkModeToggle :dark="false" />
   <WebIcon name="xiaoxi-zhihui" />

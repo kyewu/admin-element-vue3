@@ -8,9 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     DarkModeToggle: typeof import('./components/Themes/DarkModeToggle.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElRow: typeof import('element-plus/es')['ElRow']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     FullScreen: typeof import('./components/Themes/FullScreen.vue')['default']
     IconList: typeof import('./components/Icon/IconList.vue')['default']
