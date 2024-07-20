@@ -1,3 +1,7 @@
+import type { IconProps as IconPropsOrigin } from '@iconify/vue'
+
+export interface IconProps extends IconPropsOrigin {}
+
 export interface SvgIcon {
   name: string
   prefix?: string
