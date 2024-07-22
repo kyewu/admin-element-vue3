@@ -4,6 +4,7 @@
 
 <template>
   <h5>Notice Component Demo</h5>
+  <Notice />
   <Notification icon="ep:bell" :value="10" />
 </template>
 
